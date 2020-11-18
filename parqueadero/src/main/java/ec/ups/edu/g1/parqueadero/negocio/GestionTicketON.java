@@ -1,5 +1,7 @@
 package ec.ups.edu.g1.parqueadero.negocio;
 
+import java.sql.SQLException;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -29,9 +31,8 @@ public class GestionTicketON {
 	//public Vehiculo buscarVehiculo(String placa) {
 		//return null;
 	//}
-	public boolean registrarCliente(Cliente cliente) {
-		daoCliente
+	public boolean registrarCliente(Cliente cliente) throws SQLException {
+		daoCliente.insert(cliente);
+		return true;
 	}
-	
-
 }

@@ -4,37 +4,54 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+
 import ec.ups.edu.g1.parqueadero.modelo.Cliente;
 
+@Stateless
 public class ClienteDAO {
-	private ConexionDAO con;
-	private Connection connection;
-	public boolean insert(Cliente cliente) {
+	private Connection connection2;
+	
+	@Inject
+	private Connection con;
+	
+	public boolean insert(Cliente cliente) throws SQLException {
+		String sql="INSERT INTO TBL_CLIENTE (dni,email,nombre,tipoDocumento)"
+				+ "VALUES (?,?,?,?)";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, cliente.getDni());
+		ps.setString(2, cliente.getEmail());
+		ps.setString(3, cliente.getNombre());
+		ps.setInt(4, cliente.getTipoDocumento());
+		ps.executeUpdate();
+		ps.close();
+		
 		return true;
 	}
 	public boolean update(Cliente cliente) throws SQLException {
 		boolean rowActualizar = false;
-		String sql = "UPDATE tbl_cliente SET dni=?,tipo_documento=?,nombre=?,email=? WHERE dni=?";
-		con.conectar();
-		connection = con.getJdbcConnection();
-		PreparedStatement statement = connection.prepareStatement(sql);
-		statement.setString(1, cliente.getDni());
-		statement.setInt(2, cliente.getTipoDocumento());
-		statement.setString(3, cliente.getNombre());
-		statement.setString(4, cliente.getEmail());
+		String sql = "UPDATE TBL_CLIENTE SET dni=?,email=?,nombre=?,tipoDocumento=? WHERE dni=?";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, cliente.getDni());
+		ps.setString(2, cliente.getEmail());
+		ps.setString(3, cliente.getNombre());
+		ps.setInt(4, cliente.getTipoDocumento());
+		//ps.setString(5, cliente.getNombre());
 		System.out.println(cliente.getDni());
-		statement.setInt(5, cliente.getTipoDocumento());
-		statement.setString(6, cliente.getNombre());
+
  
-		rowActualizar = statement.executeUpdate() > 0;
-		statement.close();
-		con.desconectar();
+		rowActualizar = ps.executeUpdate() > 0;
+		ps.close();
+		con.close();
 		return rowActualizar;
 	}
 	public Cliente read(int  id) {
 		return null;
 	}
 	public boolean delete(int id) {
+		
 		return true;
 	}
 }
