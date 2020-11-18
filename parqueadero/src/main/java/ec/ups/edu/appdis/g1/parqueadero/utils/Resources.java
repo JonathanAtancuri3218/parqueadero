@@ -22,6 +22,7 @@ public class Resources {
     
     private void closeConnection(@Disposes Connection conn) throws SQLException {
         conn.close();
+        //hola
     }
 }
 
