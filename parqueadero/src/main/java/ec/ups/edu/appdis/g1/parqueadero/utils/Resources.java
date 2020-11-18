@@ -11,7 +11,7 @@ import javax.sql.DataSource;
 
 public class Resources {
 
-	String dsName = "java:jboss/datasources/parqueadero";
+	String dsName = "java:/parqueadero";
 
     @Produces
     private Connection createConnection() throws SQLException, NamingException {
@@ -22,6 +22,7 @@ public class Resources {
     
     private void closeConnection(@Disposes Connection conn) throws SQLException {
         conn.close();
+        //hola
     }
 }
 
