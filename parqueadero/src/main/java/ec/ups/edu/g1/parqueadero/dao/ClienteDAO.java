@@ -17,13 +17,13 @@ public class ClienteDAO {
 	private Connection con;
 	
 	public boolean insert(Cliente cliente) throws SQLException {
-		String sql="INSERT INTO TBL_CLIENTE (dni,email,nombre,tipoDocumento)"
+		String sql="INSERT INTO tbl_cliente (dni,tipoDocumento,nombre,email)"
 				+ "VALUES (?,?,?,?)";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, cliente.getDni());
-		ps.setString(2, cliente.getEmail());
+		ps.setInt(2, cliente.getTipoDocumento());
 		ps.setString(3, cliente.getNombre());
-		ps.setInt(4, cliente.getTipoDocumento());
+		ps.setString(4, cliente.getEmail());
 		ps.executeUpdate();
 		ps.close();
 		
