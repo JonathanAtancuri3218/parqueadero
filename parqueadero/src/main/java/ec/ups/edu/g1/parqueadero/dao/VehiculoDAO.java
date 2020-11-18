@@ -26,7 +26,7 @@ public class VehiculoDAO {
 	private Vehiculo vehiculo;
 	
 	public boolean insert(Vehiculo vehiculo) throws SQLException {
-		String sql="INSERT INTO TBL_CLIENTE (placa,marca,color)"
+		String sql="INSERT INTO TBL_VEHICULO (placa,marca,color)"
 				+ "VALUES (?,?,?,?)";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, vehiculo.getPlaca());
@@ -56,7 +56,7 @@ public class VehiculoDAO {
 
 	//duda aqui
 public Vehiculo read(String  placa) throws SQLException {
-		String sql="SELECT PLACA, MARCA, COLOR FROM VEHICULOS WHERE PLACA=?;";
+		String sql="SELECT PLACA, MARCA, COLOR FROM TBL_VEHICULOS WHERE PLACA=?;";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, placa);
 		result =ps.executeQuery();
@@ -71,7 +71,7 @@ public Vehiculo read(String  placa) throws SQLException {
 
 
 	public boolean delete(String placa) throws SQLException {
-		String sql="delete from cehiculos where placa =?";
+		String sql="delete from TBL_vehiculos where placa =?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, placa);
 		resultado=ps.execute();
