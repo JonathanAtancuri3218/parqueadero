@@ -14,5 +14,6 @@ public class CierreDAO {
 	public boolean contabilizar() {
 		return true;
 	}
-
+//este es un mensaje de prueba.
+	
 }
