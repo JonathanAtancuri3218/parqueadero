@@ -8,6 +8,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import ec.ups.edu.g1.parqueadero.modelo.Cliente;
+import ec.ups.edu.g1.parqueadero.modelo.Vehiculo;
 
 @Stateless
 public class ClienteDAO {
@@ -47,11 +48,5 @@ public class ClienteDAO {
 		con.close();
 		return rowActualizar;
 	}
-	public Cliente read(int  id) {
-		return null;
-	}
-	public boolean delete(int id) {
-		
-		return true;
-	}
+	
 }

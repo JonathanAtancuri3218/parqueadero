@@ -1,10 +1,14 @@
 package ec.ups.edu.g1.parqueadero.modelo;
 
+
+
 public class Vehiculo {
 
 	private String placa;
 	private String marca;
 	private String color;
+	
+
 	
 	public String getPlaca() {
 		return placa;
@@ -24,6 +28,9 @@ public class Vehiculo {
 	public void setColor(String color) {
 		this.color = color;
 	}
+	
+	
+	
 	
 	
 }
